@@ -30,8 +30,15 @@ body.append(h1Title, divContainer);
 button.addEventListener("click", async () => {
   const person = await api.getRandomPerson();
   let objectPerson = await promiseHelper.parsePerson(person);
-  const datetime = await api.getDatetimePerson(objectPerson.city);
-
+  let datetime = "";
+  try {
+    const locationDatetime = api.urlDatetime + objectPerson.city;
+    let worldtime = await fetch(locationDatetime, api.optionsDatetime)
+      .then((response) => response.json());
+    datetime = worldtime.datetime;
+  } catch (error) {
+    console.error(error);
+  }
   divCard.innerHTML = "";
   const data = [`${objectPerson.firstName} ${objectPerson.lastName}`,
   objectPerson.email, objectPerson.phone, objectPerson.city, datetime];
