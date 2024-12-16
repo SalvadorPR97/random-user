@@ -18,7 +18,7 @@ export const urlDatetime = `https://world-time-by-based-api.p.rapidapi.com/v1/wo
 export const optionsDatetime = {
     method: 'GET',
     headers: {
-        'x-rapidapi-key': '9dc0905ab3msha0e56fdff01d91ap1a421ejsnd39ab0b456fb',
+        'x-rapidapi-key': import.meta.env.VITE_WORLD_TIME_API_KEY,
         'x-rapidapi-host': 'world-time-by-based-api.p.rapidapi.com'
     }
 };
